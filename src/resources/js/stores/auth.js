@@ -13,12 +13,12 @@ export const useAuthStore = defineStore('auth', {
 
     actions: {
         async login(email, password) {
-            const response = await api.post('/login', { email, password })
+            const response = await api.post('api/login', { email, password })
             this.token = response.data.data.token
         },
         async logout() {
             try {
-                await api.post('/logout')
+                await api.post('api/logout')
             } catch (e) {
 
             }
