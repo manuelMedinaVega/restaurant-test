@@ -6,7 +6,6 @@
         </v-row>
     
         <v-data-table
-            :headers="headers"
             :items="clients"
             :loading="loading" 
             :page.sync="page"
@@ -14,13 +13,34 @@
             :server-items-length="total"
             class="elevation-1"
         >
-            <template #item.actions="{ item }">
-                <v-btn icon @click="editClient(item.id)">
-                    <v-icon>mdi-pencil</v-icon>
-                </v-btn>
-                <v-btn icon @click="deleteClient(item.id)">
-                    <v-icon color="red">mdi-delete</v-icon>
-                </v-btn>
+
+            <template #headers>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </template>
+
+            <template #item="{ item }">
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.phone }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>
+                        <v-btn icon @click="editClient(item.id)">
+                            <v-icon>mdi-pencil</v-icon>
+                        </v-btn>
+                        <v-btn icon @click="deleteClient(item.id)">
+                            <v-icon color="red">mdi-delete</v-icon>
+                        </v-btn>
+                    </td>
+                </tr>
             </template>
         </v-data-table>
 
@@ -46,14 +66,6 @@
         message: '',
         color: 'success'
     })
-    
-    const headers = [
-        { text: 'Nombre', value: 'name' },
-        { text: 'Correo', value: 'email' },
-        { text: 'Teléfono', value: 'phone' },
-        { text: 'Dirección', value: 'address' },
-        { text: 'Acciones', value: 'actions', sortable: false },
-    ]
     
     const fetchClients = async () => {
         loading.value = true
