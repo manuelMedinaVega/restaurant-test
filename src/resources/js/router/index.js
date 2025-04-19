@@ -3,8 +3,12 @@ import { useAuthStore } from '@/stores/auth'
 
 import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
-import Clients from '../components/views/Clients.vue'
+
+import ClientList from '../components/views/clients/List.vue'
+import ClientForm from '../components/views/clients/Form.vue'
+
 import Tables from '../components/views/Tables.vue'
+
 import Reservations from '../components/views/Reservations.vue'
 
 const routes = [
@@ -21,8 +25,20 @@ const routes = [
     },
     { 
         path: '/comensales',
-        name: 'clients',
-        component: Clients,
+        name: 'clients.list',
+        component: ClientList,
+        meta: { requiresAuth: true }
+    },
+    { 
+        path: '/comensales/nuevo',
+        name: 'clients.new',
+        component: ClientForm,
+        meta: { requiresAuth: true }
+    },
+    { 
+        path: '/comensales/:id/editar',
+        name: 'clients.edit',
+        component: ClientForm,
         meta: { requiresAuth: true }
     },
     {
