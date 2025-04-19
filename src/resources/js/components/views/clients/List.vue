@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-row class="justify-space-between align-center mb-4">
+        <v-row class="justify-space-between align-center mb-4 mt-4">
             <h2>Gestión de Comensales</h2>
             <v-btn color="primary" @click="$router.push('/comensales/nuevo')">Nuevo Comensal</v-btn>
         </v-row>
