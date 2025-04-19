@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-row class="justify-space-between align-center mb-4">
+        <v-row class="justify-space-between align-center mb-4 mt-4">
             <h2>Gestión de Mesas</h2>
             <v-btn color="primary" @click="$router.push('/mesas/nueva')">Nueva Mesa</v-btn>
         </v-row>
@@ -13,15 +13,15 @@
             :server-items-length="total"
             class="elevation-1"
         >
-        <template #headers>
-            <tr>
-                <th>ID</th>
-                <th>Número</th>
-                <th>Capacidad</th>
-                <th>Ubicación</th>
-                <th>Acciones</th>
-            </tr>
-        </template>
+            <template #headers>
+                <tr>
+                    <th>ID</th>
+                    <th>Número</th>
+                    <th>Capacidad</th>
+                    <th>Ubicación</th>
+                    <th>Acciones</th>
+                </tr>
+            </template>
 
             <template #item="{ item }">
                 <tr>
