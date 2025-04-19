@@ -7,7 +7,8 @@ import Home from '../components/views/Home.vue'
 import ClientList from '../components/views/clients/List.vue'
 import ClientForm from '../components/views/clients/Form.vue'
 
-import Tables from '../components/views/Tables.vue'
+import TableList from '../components/views/tables/List.vue'
+import TableForm from '../components/views/tables/Form.vue'
 
 import Reservations from '../components/views/Reservations.vue'
 
@@ -43,8 +44,20 @@ const routes = [
     },
     {
         path: '/mesas',
-        name: 'tables',
-        component: Tables,
+        name: 'tables.list',
+        component: TableList,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/mesas/nueva',
+        name: 'tables.new',
+        component: TableForm,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/mesas/:id/editar',
+        name: 'tables.edit',
+        component: TableForm,
         meta: { requiresAuth: true }
     },
     {
