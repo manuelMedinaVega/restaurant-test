@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\ApiResponses;
+
 /**
  * @OA\Info(
  *    title="Swagger with Laravel",
@@ -17,5 +19,5 @@ namespace App\Http\Controllers;
  */
 abstract class Controller
 {
-    //
+    use ApiResponses;
 }
