@@ -15,21 +15,37 @@ class AuthController extends Controller
     use ApiResponses;
 
     /**
-     * Login
-     *
-     * Authenticates the user and returns the user's API token.
-     *
-     * @unauthenticated
-     *
-     * @group Authentication
-     *
-     * @response 200 {
-            "message": "Authenticated",
-            "data": {
-                "token": "{YOUR_AUTH_KEY}"
-            },
-            "status": 200
-        }
+     * @OA\Post(
+     *     path="/api/login",
+     *     summary="Login",
+     *     tags={"Authentication"},
+     *     description="Authenticates the user and returns the user's API token.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/LoginUserRequest")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Authenticated",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Authenticated"),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 @OA\Property(property="token", type="string", example="1|abc123...jwt_token...")
+     *             ),
+     *             @OA\Property(property="status", type="integer", example=200)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Invalid credentials",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Invalid credentials"),
+     *             @OA\Property(property="status", type="integer", example=401)
+     *         )
+     *     )
+     * )
      */
     public function login(LoginUserRequest $request)
     {
@@ -52,13 +68,21 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout
-     *
-     * Signs out the user and destroy's the API token.
-     *
-     * @group Authentication
-     *
-     * @response 200 {}
+     * @OA\Post(
+     *     path="/api/logout",
+     *     summary="Logout",
+     *     tags={"Authentication"},
+     *     description="Signs out the user and destroys the API token.",
+     *     security={{"sanctum":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Logged out",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example=""),
+     *             @OA\Property(property="status", type="integer", example=200)
+     *         )
+     *     )
+     * )
      */
     public function logout(Request $request)
     {
