@@ -1,36 +1,56 @@
 import {createRouter, createWebHistory} from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
+import Login from '../components/views/Login.vue'
 import Home from '../components/views/Home.vue'
 import Clients from '../components/views/Clients.vue'
 import Tables from '../components/views/Tables.vue'
 import Reservations from '../components/views/Reservations.vue'
 
 const routes = [
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
     { 
         path: '/', 
         name: 'home', 
-        component: Home 
+        component: Home,
+        meta: { requiresAuth: true }
     },
     { 
         path: '/comensales',
         name: 'clients',
-        component: Clients 
+        component: Clients,
+        meta: { requiresAuth: true }
     },
     {
         path: '/mesas',
         name: 'tables',
-        component: Tables
+        component: Tables,
+        meta: { requiresAuth: true }
     },
     {
         path: '/reservas',
         name: 'reservations',
-        component: Reservations
+        component: Reservations,
+        meta: { requiresAuth: true }
     }
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+})
+
+router.beforeEach((to, from, next) => {
+    const auth = useAuthStore()
+    if (to.meta.requiresAuth && !auth.isAuthenticated) {
+        next('/login')
+    } else {
+        next()
+    }
 })
 
 export default router

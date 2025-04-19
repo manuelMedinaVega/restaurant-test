@@ -1,7 +1,8 @@
 <template>
-    <v-container class="mt-5">
-        <v-card class="mx-auto" max-width="400">
-            <v-card-title>Iniciar sesión</v-card-title>
+    <v-container class="fill-height d-flex align-center justify-center">
+        <v-card class="pa-6" max-width="500" width="100%">
+            <v-card-title class="text-h5 font-weight-bold text-center">Iniciar Sesión</v-card-title>
+    
             <v-card-text>
                 <v-form @submit.prevent="login">
                     <v-text-field
@@ -16,36 +17,52 @@
                         type="password"
                         required
                     />
-                    <v-btn type="submit" color="primary" block>Entrar</v-btn>
+                    <v-btn
+                        type="submit"
+                        color="indigo"
+                        class="mt-4"
+                        block
+                        :loading="loading"
+                    >
+                        Entrar
+                    </v-btn>
+                    <v-alert
+                        v-if="error"
+                        type="error"
+                        class="mt-4"
+                        dense
+                    >
+                        {{ error }}
+                    </v-alert>
                 </v-form>
             </v-card-text>
         </v-card>
     </v-container>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
+    import { ref } from 'vue'
+    import { useRouter } from 'vue-router'
+    import { useAuthStore } from '@/stores/auth'
+    
+    const router = useRouter()
+    const auth = useAuthStore()
 
-  import { ref } from 'vue'
-  import axios from 'axios'
-  import { useRouter } from 'vue-router'
-  
-  const email = ref('')
-  const password = ref('')
-  const router = useRouter()
-  
-  const login = async () => {
-    try {
-
-        await axios.get('/sanctum/csrf-cookie')
-
-        await axios.post('/api/login', {
-            email: email.value,
-            password: password.value,
-        })
-
-        router.push('/')
-    } catch (err) {
-        alert('Credenciales inválidas')
+    const email = ref('')
+    const password = ref('')
+    const error = ref('')
+    const loading = ref(false)
+    
+    const login = async () => {
+        error.value = ''
+        loading.value = true
+        try {
+            await auth.login(email.value, password.value)
+            router.push('/')
+        } catch (err) {
+            error.value = 'Email o contraseña incorrectos'
+        } finally {
+            loading.value = false
+        }
     }
-  }
-  </script>
+</script>
