@@ -31,7 +31,7 @@ Este proyecto es una API RESTful desarrollada en Laravel 12 para gestionar clien
     Inicia los contenedores: <b><i>docker-compose up -d --build</i></b>
   </li>
 
-    <li>
+  <li>
     Instalar dependencias: <b><i>docker-compose run --rm --user restaurant composer install</i></b>
   </li>
 
