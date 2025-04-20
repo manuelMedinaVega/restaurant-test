@@ -24,19 +24,19 @@ Este proyecto es una API RESTful desarrollada en Laravel 12 para gestionar clien
   </li>
   
   <li>
-    Copiar el archivo .env.example a .env
+    Copiar el archivo .env.example que está dentro de la carpeta /src a nuevo archivo .env
   </li>
 
   <li>
     Inicia los contenedores: <b><i>docker-compose up -d --build</i></b>
   </li>
 
+    <li>
+    Instalar dependencias: <b><i>docker-compose run --rm --user restaurant composer install</i></b>
+  </li>
+
   <li>
     Generar el app key: <b><i>docker-compose run --rm artisan key:gen</i></b>
-  </li>
-  
-  <li>
-    Instalar dependencias: <b><i>docker-compose run --rm --user restaurant composer install</i></b>
   </li>
   
   <li> 
@@ -45,6 +45,14 @@ Este proyecto es una API RESTful desarrollada en Laravel 12 para gestionar clien
 
   <li>
     Ejecutar los seeders: <b><i>docker-compose run --rm artisan db:seed</i></b>
+  </li>
+
+  <li>
+    Instalar las dependencias de npm: <b><i>docker-compose run --rm npm install</i></b>
+  </li>
+
+  <li>
+    Compilar los assets: <b><i>docker-compose run --rm npm run build</i></b>
   </li>
 
   <li>
