@@ -15,6 +15,7 @@ Este proyecto es una API RESTful desarrollada en Laravel 12 para gestionar clien
 - Autenticación: Laravel Sanctum
 - Documentado con Swagger
 - Docker y Docker compose
+- Github actions
 
 ## 📦 Instalación
 
