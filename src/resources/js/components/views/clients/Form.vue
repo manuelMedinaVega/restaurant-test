@@ -36,6 +36,10 @@
         <v-alert v-if="showSuccess" type="success" class="mb-4" dense>
             Comensal guardado con éxito
         </v-alert>
+
+        <v-snackbar v-model="snackbar.show" :color="snackbar.color" timeout="3000">
+            {{ snackbar.message }}
+        </v-snackbar>
     </v-container>
   </template>
   
@@ -50,6 +54,7 @@
     const isEdit = computed(() => !!id)
     
     const loading = ref(false)
+    const snackbar = ref({ show: false, message: '', color: 'success' })
     const formRef = ref(null)
 
     const serverErrors = ref([])
@@ -109,6 +114,12 @@
         } finally {
             loading.value = false
         }
+    }
+    
+    const showSnackbar = (msg, color = 'success') => {
+        snackbar.value.message = msg
+        snackbar.value.color = color
+        snackbar.value.show = true
     }
     
     onMounted(fetchClient)
