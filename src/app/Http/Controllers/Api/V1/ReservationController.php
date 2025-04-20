@@ -15,7 +15,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return ReservationResource::collection(Reservation::paginate());
+        return ReservationResource::collection(Reservation::with(['client', 'table'])->paginate());
     }
 
     /**
@@ -23,7 +23,9 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
-        return new ReservationResource(Reservation::create($request->mappedAttributes()));
+        $reservation = Reservation::create($request->mappedAttributes());
+        $reservation->load(['client', 'table']);
+        return new ReservationResource($reservation);
     }
 
     /**
@@ -31,6 +33,7 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
+        $reservation->load(['client', 'table']);
         return new ReservationResource($reservation);
     }
 
@@ -40,6 +43,7 @@ class ReservationController extends Controller
     public function update(StoreReservationRequest $request, Reservation $reservation)
     {
         $reservation->update($request->mappedAttributes());
+        $reservation->load(['client', 'table']);
         return new ReservationResource($reservation);
     }
 

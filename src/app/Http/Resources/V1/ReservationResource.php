@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\V1;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +20,7 @@ class ReservationResource extends JsonResource
             'id' => $this->id,
             'attributes' => [
                 'date' => $this->date,
-                'time' => $this->time,
+                'time' => Carbon::parse($this->time)->format('H:i'),
                 'numberOfPeople' => $this->number_of_people,
                 'createdAt' => $this->created_at,
                 'updatedAt' => $this->updated_at
@@ -29,6 +30,7 @@ class ReservationResource extends JsonResource
                     'data' => [
                         'type' => 'client',
                         'id' => $this->client_id,
+                        'attributes' => (new ClientResource($this->whenLoaded('client')))->resolve(),
                     ],
                     'links' => [
                         'self' => route('clients.show', ['client' => $this->client_id])
@@ -38,6 +40,7 @@ class ReservationResource extends JsonResource
                     'data' => [
                         'type' => 'tables',
                         'id' => $this->table_id,
+                        'attributes' => (new TableResource($this->whenLoaded('table')))->resolve(), 
                     ],
                     'links' => [
                         'self' => route('tables.show', ['table' => $this->table_id])

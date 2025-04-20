@@ -10,7 +10,8 @@ import ClientForm from '../components/views/clients/Form.vue'
 import TableList from '../components/views/tables/List.vue'
 import TableForm from '../components/views/tables/Form.vue'
 
-import Reservations from '../components/views/Reservations.vue'
+import ReservationList from '../components/views/reservations/List.vue'
+import ReservationForm from '../components/views/reservations/Form.vue'
 
 const routes = [
     {
@@ -63,9 +64,21 @@ const routes = [
     {
         path: '/reservas',
         name: 'reservations',
-        component: Reservations,
+        component: ReservationList,
         meta: { requiresAuth: true }
-    }
+    },
+    {
+        path: '/reservas/nueva',
+        name: 'reservations.new',
+        component: ReservationForm,
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/reservas/:id/editar',
+        name: 'reservations.edit',
+        component: ReservationForm,
+        meta: { requiresAuth: true }
+    },
 ]
 
 const router = createRouter({
