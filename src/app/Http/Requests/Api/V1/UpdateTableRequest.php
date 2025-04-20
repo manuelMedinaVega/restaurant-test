@@ -28,10 +28,10 @@ class UpdateTableRequest extends FormRequest
             'data' => ['required', 'array'],
             'data.attributes' => ['required', 'array'],
             'data.attributes.number' => [
-                'required', 
-                'string', 
-                'max:20', 
-                Rule::unique('tables', 'number')->ignore($tableId)
+                'required',
+                'string',
+                'max:20',
+                Rule::unique('tables', 'number')->ignore($tableId),
             ],
             'data.attributes.capacity' => ['required', 'integer', 'min:1'],
             'data.attributes.location' => ['nullable', 'string', 'max:255'],

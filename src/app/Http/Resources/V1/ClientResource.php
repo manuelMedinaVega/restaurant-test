@@ -23,11 +23,11 @@ class ClientResource extends JsonResource
                 'phone' => $this->phone,
                 'address' => $this->address,
                 'createdAt' => $this->created_at,
-                'updatedAt' => $this->updated_at
+                'updatedAt' => $this->updated_at,
             ],
             'links' => [
-                'self' => route('clients.show', ['client' => $this->id])
-            ]
+                'self' => route('clients.show', ['client' => $this->id]),
+            ],
         ];
     }
 }

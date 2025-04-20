@@ -32,10 +32,10 @@ class UpdateClientRequest extends FormRequest
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('clients', 'email')->ignore($clientId)
+                Rule::unique('clients', 'email')->ignore($clientId),
             ],
             'data.attributes.phone' => ['nullable', 'string', 'max:20'],
-            'data.attributes.address' => ['nullable', 'string', 'max:255']
+            'data.attributes.address' => ['nullable', 'string', 'max:255'],
         ];
     }
 

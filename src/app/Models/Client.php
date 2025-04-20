@@ -11,7 +11,7 @@ class Client extends Model
         'name',
         'email',
         'phone',
-        'address'
+        'address',
     ];
 
     public function reservations(): HasMany

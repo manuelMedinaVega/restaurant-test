@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\StoreReservationRequest;
 use App\Http\Resources\V1\ReservationResource;
 use App\Models\Reservation;
-use Illuminate\Http\Request;
 
 /**
  * @OA\Tag(
@@ -21,9 +20,11 @@ class ReservationController extends Controller
      *     path="/api/v1/reservations",
      *     summary="List all reservations",
      *     tags={"Reservations"},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="List of reservations",
+     *
      *         @OA\JsonContent(type="object")
      *     )
      * )
@@ -38,10 +39,13 @@ class ReservationController extends Controller
      *     path="/api/v1/reservations",
      *     summary="Create a new reservation",
      *     tags={"Reservations"},
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(
      *             required={"data"},
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
@@ -82,6 +86,7 @@ class ReservationController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=201,
      *         description="Reservation created successfully"
@@ -92,6 +97,7 @@ class ReservationController extends Controller
     {
         $reservation = Reservation::create($request->mappedAttributes());
         $reservation->load(['client', 'table']);
+
         return new ReservationResource($reservation);
     }
 
@@ -100,12 +106,15 @@ class ReservationController extends Controller
      *     path="/api/v1/reservations/{id}",
      *     summary="Get reservation by ID",
      *     tags={"Reservations"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Reservation data"
@@ -119,6 +128,7 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         $reservation->load(['client', 'table']);
+
         return new ReservationResource($reservation);
     }
 
@@ -127,16 +137,21 @@ class ReservationController extends Controller
      *     path="/api/v1/reservations/{id}",
      *     summary="Update a reservation",
      *     tags={"Reservations"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(
      *             required={"data"},
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
@@ -175,6 +190,7 @@ class ReservationController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Reservation updated successfully"
@@ -185,6 +201,7 @@ class ReservationController extends Controller
     {
         $reservation->update($request->mappedAttributes());
         $reservation->load(['client', 'table']);
+
         return new ReservationResource($reservation);
     }
 
@@ -193,12 +210,15 @@ class ReservationController extends Controller
      *     path="/api/v1/reservations/{id}",
      *     summary="Delete a reservation",
      *     tags={"Reservations"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\Response(
      *         response=204,
      *         description="Reservation deleted successfully"

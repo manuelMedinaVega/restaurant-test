@@ -7,7 +7,6 @@ use App\Http\Requests\Api\V1\StoreTableRequest;
 use App\Http\Requests\Api\V1\UpdateTableRequest;
 use App\Http\Resources\V1\TableResource;
 use App\Models\Table;
-use Illuminate\Http\Request;
 
 /**
  * @OA\Tag(
@@ -22,9 +21,11 @@ class TableController extends Controller
      *     path="/api/v1/tables",
      *     summary="List all tables",
      *     tags={"Tables"},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="List of tables",
+     *
      *         @OA\JsonContent(type="object")
      *     )
      * )
@@ -39,10 +40,13 @@ class TableController extends Controller
      *     path="/api/v1/tables",
      *     summary="Create a new table",
      *     tags={"Tables"},
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(
      *             required={"data"},
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
@@ -57,6 +61,7 @@ class TableController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=201,
      *         description="Table created successfully"
@@ -73,12 +78,15 @@ class TableController extends Controller
      *     path="/api/v1/tables/{id}",
      *     summary="Get table by ID",
      *     tags={"Tables"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Table data"
@@ -99,16 +107,21 @@ class TableController extends Controller
      *     path="/api/v1/tables/{id}",
      *     summary="Update a table",
      *     tags={"Tables"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(
      *             required={"data"},
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
@@ -122,6 +135,7 @@ class TableController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Table updated successfully"
@@ -131,6 +145,7 @@ class TableController extends Controller
     public function update(UpdateTableRequest $request, Table $table)
     {
         $table->update($request->mappedAttributes());
+
         return new TableResource($table);
     }
 
@@ -139,12 +154,15 @@ class TableController extends Controller
      *     path="/api/v1/tables/{id}",
      *     summary="Delete a table",
      *     tags={"Tables"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\Response(
      *         response=204,
      *         description="Table deleted successfully"

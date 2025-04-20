@@ -27,7 +27,7 @@ class StoreClientRequest extends FormRequest
             'data.attributes.name' => ['required', 'string', 'max:255'],
             'data.attributes.email' => ['required', 'email', 'max:255', 'unique:clients,email'],
             'data.attributes.phone' => ['nullable', 'string', 'max:20'],
-            'data.attributes.address' => ['nullable', 'string', 'max:255']
+            'data.attributes.address' => ['nullable', 'string', 'max:255'],
         ];
     }
 

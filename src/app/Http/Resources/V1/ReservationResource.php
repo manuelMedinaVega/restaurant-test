@@ -23,7 +23,7 @@ class ReservationResource extends JsonResource
                 'time' => Carbon::parse($this->time)->format('H:i'),
                 'numberOfPeople' => $this->number_of_people,
                 'createdAt' => $this->created_at,
-                'updatedAt' => $this->updated_at
+                'updatedAt' => $this->updated_at,
             ],
             'relationships' => [
                 'client' => [
@@ -33,23 +33,23 @@ class ReservationResource extends JsonResource
                         'attributes' => (new ClientResource($this->whenLoaded('client')))->resolve(),
                     ],
                     'links' => [
-                        'self' => route('clients.show', ['client' => $this->client_id])
-                    ]
+                        'self' => route('clients.show', ['client' => $this->client_id]),
+                    ],
                 ],
                 'table' => [
                     'data' => [
                         'type' => 'tables',
                         'id' => $this->table_id,
-                        'attributes' => (new TableResource($this->whenLoaded('table')))->resolve(), 
+                        'attributes' => (new TableResource($this->whenLoaded('table')))->resolve(),
                     ],
                     'links' => [
-                        'self' => route('tables.show', ['table' => $this->table_id])
-                    ]
-                ]
+                        'self' => route('tables.show', ['table' => $this->table_id]),
                     ],
+                ],
+            ],
             'links' => [
-                'self' => route('reservations.show', ['reservation' => $this->id])
-            ]
+                'self' => route('reservations.show', ['reservation' => $this->id]),
+            ],
         ];
     }
 }

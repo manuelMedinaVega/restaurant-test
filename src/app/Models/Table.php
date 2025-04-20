@@ -10,7 +10,7 @@ class Table extends Model
     protected $fillable = [
         'number',
         'capacity',
-        'location'
+        'location',
     ];
 
     public function reservations(): HasMany

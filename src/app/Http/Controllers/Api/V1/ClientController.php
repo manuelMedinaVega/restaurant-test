@@ -7,7 +7,6 @@ use App\Http\Requests\Api\V1\StoreClientRequest;
 use App\Http\Requests\Api\V1\UpdateClientRequest;
 use App\Http\Resources\V1\ClientResource;
 use App\Models\Client;
-use Illuminate\Http\Request;
 
 /**
  * @OA\Tag(
@@ -22,9 +21,11 @@ class ClientController extends Controller
      *     path="/api/v1/clients",
      *     summary="List all clients",
      *     tags={"Clients"},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="List of clients",
+     *
      *         @OA\JsonContent(type="object")
      *     )
      * )
@@ -39,10 +40,13 @@ class ClientController extends Controller
      *     path="/api/v1/clients",
      *     summary="Create a new client",
      *     tags={"Clients"},
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(
      *             required={"data"},
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
@@ -58,6 +62,7 @@ class ClientController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=201,
      *         description="Client created successfully"
@@ -74,12 +79,15 @@ class ClientController extends Controller
      *     path="/api/v1/clients/{id}",
      *     summary="Get client by ID",
      *     tags={"Clients"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Client data"
@@ -100,16 +108,21 @@ class ClientController extends Controller
      *     path="/api/v1/clients/{id}",
      *     summary="Update a client",
      *     tags={"Clients"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(
      *             required={"data"},
+     *
      *             @OA\Property(
      *                 property="data",
      *                 type="object",
@@ -124,6 +137,7 @@ class ClientController extends Controller
      *             )
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Client updated successfully"
@@ -133,6 +147,7 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->mappedAttributes());
+
         return new ClientResource($client);
     }
 
@@ -141,12 +156,15 @@ class ClientController extends Controller
      *     path="/api/v1/clients/{id}",
      *     summary="Delete a client",
      *     tags={"Clients"},
+     *
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
      *         required=true,
+     *
      *         @OA\Schema(type="integer")
      *     ),
+     *
      *     @OA\Response(
      *         response=204,
      *         description="Client deleted successfully"

@@ -20,14 +20,19 @@ class AuthController extends Controller
      *     summary="Login",
      *     tags={"Authentication"},
      *     description="Authenticates the user and returns the user's API token.",
+     *
      *     @OA\RequestBody(
      *         required=true,
+     *
      *         @OA\JsonContent(ref="#/components/schemas/LoginUserRequest")
      *     ),
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Authenticated",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="message", type="string", example="Authenticated"),
      *             @OA\Property(
      *                 property="data",
@@ -37,10 +42,13 @@ class AuthController extends Controller
      *             @OA\Property(property="status", type="integer", example=200)
      *         )
      *     ),
+     *
      *     @OA\Response(
      *         response=401,
      *         description="Invalid credentials",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="message", type="string", example="Invalid credentials"),
      *             @OA\Property(property="status", type="integer", example=401)
      *         )
@@ -50,7 +58,7 @@ class AuthController extends Controller
     public function login(LoginUserRequest $request)
     {
         if (! Auth::attempt($request->only('email', 'password'))) {
-            return ApiExceptions::error('Invalid credentials', 401); //401: Unauthorized
+            return ApiExceptions::error('Invalid credentials', 401); // 401: Unauthorized
         }
 
         $user = User::firstWhere('email', $request->email);
@@ -74,10 +82,13 @@ class AuthController extends Controller
      *     tags={"Authentication"},
      *     description="Signs out the user and destroys the API token.",
      *     security={{"sanctum":{}}},
+     *
      *     @OA\Response(
      *         response=200,
      *         description="Logged out",
+     *
      *         @OA\JsonContent(
+     *
      *             @OA\Property(property="message", type="string", example=""),
      *             @OA\Property(property="status", type="integer", example=200)
      *         )

@@ -22,11 +22,11 @@ class TableResource extends JsonResource
                 'capacity' => $this->capacity,
                 'location' => $this->location,
                 'createdAt' => $this->created_at,
-                'updatedAt' => $this->updated_at
+                'updatedAt' => $this->updated_at,
             ],
             'links' => [
-                'self' => route('tables.show', ['table' => $this->id])
-            ]
+                'self' => route('tables.show', ['table' => $this->id]),
+            ],
         ];
     }
 }

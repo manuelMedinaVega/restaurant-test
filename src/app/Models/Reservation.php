@@ -12,7 +12,7 @@ class Reservation extends Model
         'time',
         'number_of_people',
         'client_id',
-        'table_id'
+        'table_id',
     ];
 
     public function client(): BelongsTo
