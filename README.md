@@ -48,16 +48,16 @@ Este proyecto es una API RESTful desarrollada en Laravel 12 para gestionar clien
   </li>
 
   <li>
-    Acceder a http://localhost
+    Acceder a <a href="http://localhost" target="_blank">http://localhost</a>
   </li>
 
   <li>
     Iniciar sesión con las credenciales: <br>
-        email: test@example.com
+        email: test@example.com <br>
         contraseña: password
   </li>
 
   <li>
-    Para acceder a la documentación de la API entrar a: http://localhost/api/documentation
+    Para acceder a la documentación de la API entrar a: <a href="http://localhost/api/documentation" target="_blank">http://localhost/api/documentation</a> 
   </li>
 </ul>
