@@ -112,6 +112,638 @@
                     }
                 ]
             }
+        },
+        "/api/v1/clients": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "List all clients",
+                "operationId": "3dc702c49ee2caa5dd56328483587398",
+                "responses": {
+                    "200": {
+                        "description": "List of clients",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Create a new client",
+                "operationId": "fa5db0d5e257989e36bfe9cc2de663c2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "properties": {
+                                            "attributes": {
+                                                "required": [
+                                                    "name",
+                                                    "email"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "format": "email"
+                                                    },
+                                                    "phone": {
+                                                        "type": "string"
+                                                    },
+                                                    "address": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Client created successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/clients/{id}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get client by ID",
+                "operationId": "2bf7eab4fa46488323468a3bc0de3908",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Client data"
+                    },
+                    "404": {
+                        "description": "Client not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Update a client",
+                "operationId": "39adf22f0f031ed10ae8498e15f1f3fc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "properties": {
+                                            "attributes": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "format": "email"
+                                                    },
+                                                    "phone": {
+                                                        "type": "string"
+                                                    },
+                                                    "address": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Client updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Delete a client",
+                "operationId": "b958c57e10640016caeffaf768b5fd05",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Client deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/reservations": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "List all reservations",
+                "operationId": "1fea0748719a5cbced2b611e67240778",
+                "responses": {
+                    "200": {
+                        "description": "List of reservations",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Create a new reservation",
+                "operationId": "8a099249c009bb79e91d5ded3b235096",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "required": [
+                                            "attributes",
+                                            "relationships"
+                                        ],
+                                        "properties": {
+                                            "attributes": {
+                                                "required": [
+                                                    "date",
+                                                    "time",
+                                                    "number_of_people"
+                                                ],
+                                                "properties": {
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date"
+                                                    },
+                                                    "time": {
+                                                        "type": "string",
+                                                        "example": "18:30"
+                                                    },
+                                                    "number_of_people": {
+                                                        "type": "integer",
+                                                        "minimum": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "relationships": {
+                                                "required": [
+                                                    "client",
+                                                    "table"
+                                                ],
+                                                "properties": {
+                                                    "client": {
+                                                        "properties": {
+                                                            "data": {
+                                                                "required": [
+                                                                    "id"
+                                                                ],
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "table": {
+                                                        "properties": {
+                                                            "data": {
+                                                                "required": [
+                                                                    "id"
+                                                                ],
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Reservation created successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/reservations/{id}": {
+            "get": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Get reservation by ID",
+                "operationId": "bd8d4153599117084526a3536d3c2b3a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Reservation data"
+                    },
+                    "404": {
+                        "description": "Reservation not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Update a reservation",
+                "operationId": "2ae6de381451f2ee52a4700b5f191ee0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "required": [
+                                            "attributes",
+                                            "relationships"
+                                        ],
+                                        "properties": {
+                                            "attributes": {
+                                                "required": [
+                                                    "date",
+                                                    "time",
+                                                    "number_of_people"
+                                                ],
+                                                "properties": {
+                                                    "date": {
+                                                        "type": "string",
+                                                        "format": "date"
+                                                    },
+                                                    "time": {
+                                                        "type": "string",
+                                                        "example": "18:30"
+                                                    },
+                                                    "number_of_people": {
+                                                        "type": "integer",
+                                                        "minimum": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "relationships": {
+                                                "required": [
+                                                    "client",
+                                                    "table"
+                                                ],
+                                                "properties": {
+                                                    "client": {
+                                                        "properties": {
+                                                            "data": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "table": {
+                                                        "properties": {
+                                                            "data": {
+                                                                "properties": {
+                                                                    "id": {
+                                                                        "type": "integer"
+                                                                    }
+                                                                },
+                                                                "type": "object"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Reservation updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Reservations"
+                ],
+                "summary": "Delete a reservation",
+                "operationId": "f2f0d865144c44afb03db5f89c4b197c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Reservation deleted successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/tables": {
+            "get": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "List all tables",
+                "operationId": "a86641f3dcf512e2bed1751c36c1ea8c",
+                "responses": {
+                    "200": {
+                        "description": "List of tables",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Create a new table",
+                "operationId": "6e292739794946df4226d64299dd14ab",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "properties": {
+                                            "attributes": {
+                                                "required": [
+                                                    "name",
+                                                    "capacity"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "capacity": {
+                                                        "type": "integer"
+                                                    },
+                                                    "location": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Table created successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/tables/{id}": {
+            "get": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Get table by ID",
+                "operationId": "057ecb07a05a3dbc0b40a425635a7270",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Table data"
+                    },
+                    "404": {
+                        "description": "Table not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Update a table",
+                "operationId": "ecae6d497fc1d508d2363457cc465cea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data"
+                                ],
+                                "properties": {
+                                    "data": {
+                                        "properties": {
+                                            "attributes": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "capacity": {
+                                                        "type": "integer"
+                                                    },
+                                                    "location": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Table updated successfully"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tables"
+                ],
+                "summary": "Delete a table",
+                "operationId": "73c62001661c1cd75c30085f921f518c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Table deleted successfully"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -149,6 +781,18 @@
         }
     },
     "tags": [
+        {
+            "name": "Clients",
+            "description": "API Endpoints for managing clients"
+        },
+        {
+            "name": "Reservations",
+            "description": "API Endpoints for managing reservations"
+        },
+        {
+            "name": "Tables",
+            "description": "API Endpoints for managing tables"
+        },
         {
             "name": "Authentication",
             "description": "Authentication"
